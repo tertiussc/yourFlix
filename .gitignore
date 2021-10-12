@@ -1,0 +1,6 @@
+# Ignore files with extesions
+*.zip
+*.vsdx
+
+# ignore folders
+temp/
