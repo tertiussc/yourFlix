@@ -1,0 +1,24 @@
+/* Global Styles */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+}
+
+/* === Registration page === */
+/* Set page background */
+body.register {
+    background-image: url(../img/register-background4.jpg);
+    background-size: cover;
+}
+
+/* Form shaddow */
+.box {
+    -webkit-box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.4);
+    box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.4);
+}
+
+img.logo {
+    height: 36px;
+    /* align-self: center; */
+}
