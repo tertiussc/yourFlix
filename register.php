@@ -1,11 +1,14 @@
 <?php
 // register a autoloader to load class files automatically
 require 'includes/init.php';
-// require_once 'includes/config.php';
+require_once 'includes/config.php';
 // require_once 'includes/classes/FormSanitizer.php';
 
 echo "<div style='color: #ddd; background-color: #333; min-height: 50px'>";
 echo "<h3 style='color: #ddd'>PHP Code</h3>";
+
+// create Account class instance
+$account = new Account($con);
 
 
 if (isset($_POST["submit"])) {
