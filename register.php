@@ -21,6 +21,8 @@ if (isset($_POST["submit"])) {
     $password1 = FormSanitizer::sanitizeFormPassword($_POST["password1"]);
     $password2 = FormSanitizer::sanitizeFormPassword($_POST["password2"]);
 
+    $account->validateFirstname($firstName);
+
 }
 
 echo "</div>";
@@ -55,6 +57,7 @@ echo "</div>";
                     </a>
                     <h4 class="text-dark mb-0">Sign Up</h4>
                     <p class="text-secondary">to continue to YourFlix</p>
+                    <?php echo $account->getError("Invalid Firstname length"); ?>
                     <div class="mb-3">
                         <label for="firstName" class="form-label visually-hidden">First name</label>
                         <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First name" required1>
