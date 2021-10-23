@@ -59,31 +59,31 @@ echo "</div>";
                     <p class="text-secondary">to continue to YourFlix</p>
 
                     <!-- First name -->
-                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$firstNameCharacters) . "</P>" ?>
+                    <?php echo $account->getError(Constants::$firstNameCharacters); ?>
                     <div class="mb-3">
                         <label for="firstName" class="form-label visually-hidden">First name</label>
                         <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First name" required1>
                     </div>
 
                     <!-- Last name -->
-                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$lastNameCharacters) . "</P>" ?>
+                    <?php echo $account->getError(Constants::$lastNameCharacters); ?>
                     <div class="mb-3">
                         <label for="lastName" class="form-label visually-hidden">Last name</label>
                         <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last name" required1>
                     </div>
 
                     <!-- Username -->
-                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$usernameCharacters) . "</P>" ?>
-                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$usernameTaken) . "</P>" ?>
+                    <?php echo $account->getError(Constants::$usernameCharacters); ?>
+                    <?php echo $account->getError(Constants::$usernameTaken); ?>
                     <div class="mb-3">
                         <label for="username" class="form-label visually-hidden">Username</label>
                         <input type="text" class="form-control" name="username" id="username" placeholder="Username" required1>
                     </div>
 
                     <!-- Email 1 -->
-                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$emailDontMatch) . "</P>" ?>
-                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$emailInvalid) . "</P>" ?>
-                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$emailTaken) . "</P>" ?>
+                    <?php echo $account->getError(Constants::$emailDontMatch); ?>
+                    <?php echo $account->getError(Constants::$emailInvalid); ?>
+                    <?php echo $account->getError(Constants::$emailTaken); ?>
                     <div class="mb-3">
                         <label for="email1" class="form-label visually-hidden">Email</label>
                         <input type="email" class="form-control" name="email1" id="email1" placeholder="Enter email" required1>
@@ -95,8 +95,8 @@ echo "</div>";
                     </div>
 
                     <!-- Password 1 -->
-                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$passwordsDontMatch) . "</P>" ?>
-                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$passwordCharacters) . "</P>" ?>
+                    <?php echo $account->getError(Constants::$passwordsDontMatch); ?>
+                    <?php echo $account->getError(Constants::$passwordCharacters); ?>
                     <div class="mb-3">
                         <label for="password1" class="form-label visually-hidden">Password</label>
                         <input type="password" class="form-control" name="password1" id="password1" placeholder="Password" required1>

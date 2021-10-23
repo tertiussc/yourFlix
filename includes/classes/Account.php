@@ -11,6 +11,7 @@ class Account
         $this->con = $con;
     }
 
+    // validate all fields
     public function register($fn, $ln, $em1, $em2, $un, $pw1, $pw2)
     {
         $this->validateFirstname($fn);
@@ -85,7 +86,7 @@ class Account
     public function getError($error)
     {
         if (in_array($error, $this->errorArray)) {
-            return $error;
+            return "<p class='callout-danger'>" . $error . "</p>";
         }
     }
 }
