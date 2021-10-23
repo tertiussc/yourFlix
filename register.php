@@ -21,8 +21,8 @@ if (isset($_POST["submit"])) {
     $password1 = FormSanitizer::sanitizeFormPassword($_POST["password1"]);
     $password2 = FormSanitizer::sanitizeFormPassword($_POST["password2"]);
 
-    $account->validateFirstname($firstName);
-
+    // Validate input from Account class
+    $account->register($firstName, $lastName, $username, $email1, $email2, $password1, $password2);
 }
 
 echo "</div>";
@@ -57,35 +57,56 @@ echo "</div>";
                     </a>
                     <h4 class="text-dark mb-0">Sign Up</h4>
                     <p class="text-secondary">to continue to YourFlix</p>
-                    <?php echo $account->getError("Invalid Firstname length"); ?>
+
+                    <!-- First name -->
+                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$firstNameCharacters) . "</P>" ?>
                     <div class="mb-3">
                         <label for="firstName" class="form-label visually-hidden">First name</label>
                         <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First name" required1>
                     </div>
+
+                    <!-- Last name -->
+                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$lastNameCharacters) . "</P>" ?>
                     <div class="mb-3">
                         <label for="lastName" class="form-label visually-hidden">Last name</label>
                         <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last name" required1>
                     </div>
+
+                    <!-- Username -->
+                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$usernameCharacters) . "</P>" ?>
+                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$usernameTaken) . "</P>" ?>
+                    <div class="mb-3">
+                        <label for="username" class="form-label visually-hidden">Username</label>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" required1>
+                    </div>
+
+                    <!-- Email 1 -->
+                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$emailDontMatch) . "</P>" ?>
+                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$emailInvalid) . "</P>" ?>
+                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$emailTaken) . "</P>" ?>
                     <div class="mb-3">
                         <label for="email1" class="form-label visually-hidden">Email</label>
                         <input type="email" class="form-control" name="email1" id="email1" placeholder="Enter email" required1>
                     </div>
+                    <!-- Email 2 -->
                     <div class="mb-3">
                         <label for="email2" class="form-label visually-hidden">Confirm email</label>
                         <input type="email" class="form-control" name="email2" id="email2" placeholder="Confirm email" required1>
                     </div>
-                    <div class="mb-3">
-                        <label for="username" class="form-label visually-hidden">Confirm email</label>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" required1>
-                    </div>
+
+                    <!-- Password 1 -->
+                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$passwordsDontMatch) . "</P>" ?>
+                    <?php echo "<p class='callout-danger'>" . $account->getError(Constants::$passwordCharacters) . "</P>" ?>
                     <div class="mb-3">
                         <label for="password1" class="form-label visually-hidden">Password</label>
                         <input type="password" class="form-control" name="password1" id="password1" placeholder="Password" required1>
                     </div>
+                    <!-- Password 2 -->
                     <div class="mb-3">
                         <label for="password2" class="form-label visually-hidden">Confirm Password</label>
                         <input type="password" class="form-control" name="password2" id="password2" placeholder="Confirm password" required1>
                     </div>
+
                     <div class="mb-3 d-grid">
                         <button class="btn btn-primary text-uppercase" type="submit" name="submit"><i class="bi bi-person-plus-fill text-light"></i> Register</button>
                     </div>

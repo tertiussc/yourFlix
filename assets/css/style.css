@@ -6,19 +6,26 @@
 
 /* === Registration page === */
 /* Set page background */
-body.register {
-    background-image: url(../img/register-background4.jpg);
+body.register,
+body.login {
+    background-image: url(../img/register-background2.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
 }
 
 /* Form shaddow */
 .box {
-    -webkit-box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.4);
-    box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 5px 5px 15px 3px rgba(0, 0, 0, 0.7);
+    box-shadow: 5px 5px 15px 3px rgba(0, 0, 0, 0.7);
 }
 
 img.logo {
     height: 36px;
     /* align-self: center; */
+}
+
+.callout-danger {
+    border-left: solid tomato 4px;
+    background-color: whitesmoke;
+    padding-left: .3em;
 }

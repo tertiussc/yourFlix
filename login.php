@@ -22,7 +22,7 @@ if (isset($_POST["submit"])) {
     <title>Welcome to yourFlix</title>
 </head>
 
-<body class="register">
+<body class="login">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
