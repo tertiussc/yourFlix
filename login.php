@@ -6,9 +6,14 @@ require 'includes/init.php';
 // create Account class instance
 $account = new Account($con);
 
-// initialize values
-$email1 = '';
-$password1 = '';
+// Populate fields
+function getInputValues($value)
+{
+    if (isset($_POST[$value])) {
+        echo $_POST[$value];
+    }
+}
+
 
 
 
@@ -62,12 +67,12 @@ if (isset($_POST["submit"])) {
                     <?php echo $account->getError(Constants::$loginFailed); ?>
                     <div class="mb-3">
                         <label for="email1" class="form-label visually-hidden">Email</label>
-                        <input type="email" class="form-control" name="email1" id="email1" placeholder="Enter email" value="<?= $email1; ?>" required>
+                        <input type="email" class="form-control" name="email1" id="email1" placeholder="Enter email" value="<?php getInputValues("email1"); ?>" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="password1" class="form-label visually-hidden">Password</label>
-                        <input type="password" class="form-control" name="password1" id="password1" placeholder="Password" value="<?= $password1; ?>" required>
+                        <input type="password" class="form-control" name="password1" id="password1" placeholder="Password" required>
                     </div>
                     <div class="mb-3 d-grid">
                         <button class="btn btn-primary text-uppercase" type="submit" name="submit"><i class="bi bi-door-open-fill text-light"></i> Login</button>
