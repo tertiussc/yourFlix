@@ -47,6 +47,8 @@ class FormSanitizer {
 
     public static function sanitizeFormEmail($inputText)
     {
+        // Change all to lowercase
+        $inputText = strtolower($inputText);
         // Strip all HTML tags
         $inputText = strip_tags($inputText);
         // Strip all leading and laging spaces

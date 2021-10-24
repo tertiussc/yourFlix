@@ -10,6 +10,15 @@ echo "<h3 style='color: #ddd'>PHP Code</h3>";
 // create Account class instance
 $account = new Account($con);
 
+// Initialize values
+$firstName = '';
+$lastName = '';
+$username = '';
+$email1 = '';
+$email2 = '';
+$password1 = '';
+$password2 = '';
+
 
 if (isset($_POST["submit"])) {
     // Sanitize the input
@@ -21,8 +30,13 @@ if (isset($_POST["submit"])) {
     $password1 = FormSanitizer::sanitizeFormPassword($_POST["password1"]);
     $password2 = FormSanitizer::sanitizeFormPassword($_POST["password2"]);
 
-    // Validate input from Account class
-    $account->register($firstName, $lastName, $username, $email1, $email2, $password1, $password2);
+    // Validate input and register account
+    $success = $account->register($firstName, $lastName, $email1, $email2, $username, $password1, $password2);
+
+    if ($success) {
+        // Store session variable 
+        header("Location: index.php");
+    }
 }
 
 echo "</div>";
@@ -62,14 +76,14 @@ echo "</div>";
                     <?php echo $account->getError(Constants::$firstNameCharacters); ?>
                     <div class="mb-3">
                         <label for="firstName" class="form-label visually-hidden">First name</label>
-                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First name" required1>
+                        <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First name" value="<?= $firstName; ?>" required>
                     </div>
 
                     <!-- Last name -->
                     <?php echo $account->getError(Constants::$lastNameCharacters); ?>
                     <div class="mb-3">
                         <label for="lastName" class="form-label visually-hidden">Last name</label>
-                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last name" required1>
+                        <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last name" value="<?= $lastName ;?>" required>
                     </div>
 
                     <!-- Username -->
@@ -77,7 +91,7 @@ echo "</div>";
                     <?php echo $account->getError(Constants::$usernameTaken); ?>
                     <div class="mb-3">
                         <label for="username" class="form-label visually-hidden">Username</label>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" required1>
+                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" value="<?= $username;?>" required>
                     </div>
 
                     <!-- Email 1 -->
@@ -86,12 +100,12 @@ echo "</div>";
                     <?php echo $account->getError(Constants::$emailTaken); ?>
                     <div class="mb-3">
                         <label for="email1" class="form-label visually-hidden">Email</label>
-                        <input type="email" class="form-control" name="email1" id="email1" placeholder="Enter email" required1>
+                        <input type="email" class="form-control" name="email1" id="email1" placeholder="Enter email" value="<?= $email1 ;?>" required>
                     </div>
                     <!-- Email 2 -->
                     <div class="mb-3">
                         <label for="email2" class="form-label visually-hidden">Confirm email</label>
-                        <input type="email" class="form-control" name="email2" id="email2" placeholder="Confirm email" required1>
+                        <input type="email" class="form-control" name="email2" id="email2" placeholder="Confirm email" value="<?= $email2;?>" required>
                     </div>
 
                     <!-- Password 1 -->
@@ -99,12 +113,12 @@ echo "</div>";
                     <?php echo $account->getError(Constants::$passwordCharacters); ?>
                     <div class="mb-3">
                         <label for="password1" class="form-label visually-hidden">Password</label>
-                        <input type="password" class="form-control" name="password1" id="password1" placeholder="Password" required1>
+                        <input type="password" class="form-control" name="password1" id="password1" placeholder="Password" value="<?= $password1 ;?>" required>
                     </div>
                     <!-- Password 2 -->
                     <div class="mb-3">
                         <label for="password2" class="form-label visually-hidden">Confirm Password</label>
-                        <input type="password" class="form-control" name="password2" id="password2" placeholder="Confirm password" required1>
+                        <input type="password" class="form-control" name="password2" id="password2" placeholder="Confirm password" value="<?= $password2 ;?>" required>
                     </div>
 
                     <div class="mb-3 d-grid">

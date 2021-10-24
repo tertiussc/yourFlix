@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * Create Account and all validations class
+ */
 class Account
 {
 
@@ -19,6 +21,31 @@ class Account
         $this->validateUsername($un);
         $this->validateEmails($em1, $em2);
         $this->validatePasswords($pw1, $pw2);
+
+        // Check
+        if (empty($this->errorArray)) {
+            // this return a true or false because the insertuserDetails return true or false
+            return $this->insertUserDetails($fn, $ln, $un, $em1, $pw1);
+        }
+        return false;
+
+    }
+
+    private function insertUserDetails($fn, $ln, $un, $em1, $pw1){
+        // Hash password
+        $pw1 = password_hash($pw1, PASSWORD_DEFAULT);
+
+        // Create and execute query
+        $query = $this->con->prepare("INSERT INTO users (firstname, lastName, username, email, password)
+                                    VALUES (:fn, :ln, :un, :em1, :pw1)");
+        $query->bindValue(":fn", $fn);
+        $query->bindValue(":ln", $ln);
+        $query->bindValue(":un", $un);
+        $query->bindValue(":em1", $em1);
+        $query->bindValue(":pw1", $pw1);
+
+        // This return will return true if successfull and false if not
+        return $query->execute();
     }
 
     private function validateFirstname($fn)
@@ -55,6 +82,7 @@ class Account
     {
         if (!filter_var($em1, FILTER_VALIDATE_EMAIL)) {
             array_push($this->errorArray, Constants::$emailInvalid);
+            var_dump($em1);
             return;
         }
 
