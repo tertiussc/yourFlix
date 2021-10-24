@@ -1,3 +1,13 @@
+<?php
+    require 'includes/config.php';
+    require 'includes/init.php';
+
+    if (!isset($_SESSION["userLoggedIn"])) {
+        header("Location: login.php");
+    }
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -18,6 +28,8 @@
         <div class="col">
             <h3 class="display-5">Welcome to yourFlix</h3>
             <a href="register.php" class="text-decoration-none link-secondary">Register an Account</a>
+            <br>
+            <a href="login.php" class="text-decoration-none link-secondary">Log into your Account</a>
         </div>
     </div>
 </div>

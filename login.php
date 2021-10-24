@@ -1,6 +1,31 @@
 <?php
+
+require_once 'includes/config.php';
+require 'includes/init.php';
+
+// create Account class instance
+$account = new Account($con);
+
+// initialize values
+$email1 = '';
+$password1 = '';
+
+
+
+
 if (isset($_POST["submit"])) {
-    echo 'Form Submitted';
+
+    $email1 = FormSanitizer::sanitizeLoginEmail($_POST['email1']);
+    $password1 = FormSanitizer::sanitizeFormPassword($_POST['password1']);
+
+    $success = $account->login($email1, $password1);
+
+    if ($success) {
+        // Store the session
+        $_SESSION["userLoggedIn"] = $email1;
+        // Redirect to index page 
+        header("Location: index.php");
+    }
 }
 
 ?>
@@ -33,17 +58,19 @@ if (isset($_POST["submit"])) {
                     <h4 class="text-dark mb-0">Sign In</h4>
                     <p class="text-secondary">to continue to YourFlix</p>
 
+                    <!-- Email -->
+                    <?php echo $account->getError(Constants::$loginFailed); ?>
                     <div class="mb-3">
                         <label for="email1" class="form-label visually-hidden">Email</label>
-                        <input type="email" class="form-control" name="email1" id="email1" placeholder="Enter email" required>
+                        <input type="email" class="form-control" name="email1" id="email1" placeholder="Enter email" value="<?= $email1; ?>" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="password1" class="form-label visually-hidden">Password</label>
-                        <input type="password" class="form-control" name="password1" id="password1" placeholder="Password" required>
+                        <input type="password" class="form-control" name="password1" id="password1" placeholder="Password" value="<?= $password1; ?>" required>
                     </div>
                     <div class="mb-3 d-grid">
-                        <button class="btn btn-primary text-uppercase" type="submit" name="submit"><i class="bi bi-person-plus-fill text-light"></i> Register</button>
+                        <button class="btn btn-primary text-uppercase" type="submit" name="submit"><i class="bi bi-door-open-fill text-light"></i> Login</button>
                     </div>
                     <div class="row mb-3">
                         <a class="col-md-6 link-secondary text-decoration-none" href="/yourflix/">&larr; Back to home page</a>

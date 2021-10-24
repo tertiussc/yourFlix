@@ -7,7 +7,6 @@ session_start();
 date_default_timezone_set('Africa/Johannesburg');
 
 // Connect to the database
-
 try {
     // create database connection using PDO (PHP Database Object)
     $con = new PDO("mysql:dbname=yourflix; host=localhost", "yourflix_admin", "-]Pblx/dNxDQE!WI");

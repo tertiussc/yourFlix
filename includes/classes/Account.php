@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Create Account and all validations class
  */
@@ -28,16 +29,39 @@ class Account
             return $this->insertUserDetails($fn, $ln, $un, $em1, $pw1);
         }
         return false;
-
     }
 
-    private function insertUserDetails($fn, $ln, $un, $em1, $pw1){
+    public function login($em1, $pw1)
+    {
         // Hash password
-        $pw1 = password_hash($pw1, PASSWORD_DEFAULT);
+        // $pw1 = password_hash($pw1, PASSWORD_DEFAULT);
+        $pw1 = hash("sha512", $pw1);
 
-        // Create and execute query
+        // Prepare statement/query
+        $query = $this->con->prepare("SELECT * FROM users WHERE email=:em1 AND password=:pw1");
+        // bind values
+        $query->bindValue(":em1", $em1);
+        $query->bindValue(":pw1", $pw1);
+
+        $query->execute();
+
+        if ($query->rowCount() == 1) {
+            return true;
+        } else {
+            array_push($this->errorArray, Constants::$loginFailed);
+            return false;
+        }
+    }
+
+    private function insertUserDetails($fn, $ln, $un, $em1, $pw1)
+    {
+        // $pw1 = password_hash($pw1, PASSWORD_DEFAULT);
+        $pw1 = hash("sha512", $pw1);
+
+        // Prepare statement/query
         $query = $this->con->prepare("INSERT INTO users (firstname, lastName, username, email, password)
                                     VALUES (:fn, :ln, :un, :em1, :pw1)");
+        // Bind values
         $query->bindValue(":fn", $fn);
         $query->bindValue(":ln", $ln);
         $query->bindValue(":un", $un);
@@ -100,13 +124,14 @@ class Account
         }
     }
 
-    private function validatePasswords($pw1, $pw2) {
+    private function validatePasswords($pw1, $pw2)
+    {
         if ($pw1 != $pw2) {
             array_push($this->errorArray, Constants::$passwordsDontMatch);
             return;
         }
 
-        if (strlen($pw1) < 8 ) {
+        if (strlen($pw1) < 8) {
             array_push($this->errorArray, Constants::$passwordCharacters);
         }
     }

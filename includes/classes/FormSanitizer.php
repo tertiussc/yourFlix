@@ -58,5 +58,14 @@ class FormSanitizer {
 
         return $inputText;
     }
+
+    public static function sanitizeLoginEmail($inputText) {
+        // remove special characters
+        $inputText = strip_tags($inputText);
+        //  convert to lowercase
+        $inputText = strtolower($inputText);
+        // Return the value
+        return $inputText;
+    }
     
 }

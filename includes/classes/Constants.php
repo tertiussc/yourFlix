@@ -10,4 +10,5 @@ class Constants
     public static $emailTaken = "Email already registered";
     public static $passwordsDontMatch = "Passwords don't match";
     public static $passwordCharacters = "Passwords must be at least 8 chracters long";
+    public static $loginFailed = "You entered an incorrect email or password";
 }

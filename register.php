@@ -34,7 +34,9 @@ if (isset($_POST["submit"])) {
     $success = $account->register($firstName, $lastName, $email1, $email2, $username, $password1, $password2);
 
     if ($success) {
-        // Store session variable 
+        // Store the session
+        $_SESSION["userLoggedIn"] = $email1;
+        // Redirect to index page
         header("Location: index.php");
     }
 }
