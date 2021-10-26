@@ -5,7 +5,15 @@
     if (!isset($_SESSION["userLoggedIn"])) {
         header("Location: login.php");
     }
+    $userLoggedIn = $_SESSION["userLoggedIn"];
 
+    $account = new Account($con);
+    $currentUser = $account->retrieveAccount($userLoggedIn);
+    $username = $currentUser["username"];
+    
+
+    $preview = new PreviewProvider($con, $username);
+    echo $preview->createPreviewVideo(null);
 ?>
 
 <!doctype html>

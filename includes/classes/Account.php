@@ -53,6 +53,16 @@ class Account
         }
     }
 
+    public function retrieveAccount($userLoggedIn) {
+        $query = $this->con->prepare("SELECT * from users WHERE email=:em1");
+        $query->bindValue(":em1", $userLoggedIn);
+        // execute the query
+        if ($query->execute()) {
+            // return the results
+            return $query->fetch();
+        }
+    }
+
     private function insertUserDetails($fn, $ln, $un, $em1, $pw1)
     {
         // $pw1 = password_hash($pw1, PASSWORD_DEFAULT);
