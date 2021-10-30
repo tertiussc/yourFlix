@@ -27,5 +27,57 @@ img.logo {
 .callout-danger {
     border-left: solid tomato 4px;
     background-color: whitesmoke;
-    padding-left: .3em;
+    padding-left: 0.3em;
+}
+
+/* prepare the container for the preview overlay */
+.preview-container {
+    position: relative;
+    display: flex;
+}
+/* create overlay on top of preview-container */
+.preview-overlay {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+}
+
+.preview-image,
+.preview-video {
+    /* Image preview custom styles */
+    height: inherit;
+}
+
+.preview-overlay .main-details h3 {
+    margin: 15px 0px;
+}
+
+/* Overlay content */
+.preview-overlay .main-details {
+    position: relative;
+    top: 35%;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Preview Buttons styles */
+.buttons button {
+    background-color: rgba(51, 51, 51, 0.6);
+    color: white;
+    border: none;
+    min-width: 150px;
+    padding: 0px 38px;
+    height: 50px;
+    max-height: 50px;
+    font-size: 18px;
+    border-radius: 2px;
+    margin-bottom: 15px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+.buttons button:hover {
+    background-color: #e6e6e6;
+    color: #000;
 }
