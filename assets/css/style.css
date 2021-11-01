@@ -34,6 +34,7 @@ img.logo {
 .preview-container {
     position: relative;
     display: flex;
+    
 }
 /* create overlay on top of preview-container */
 .preview-overlay {
