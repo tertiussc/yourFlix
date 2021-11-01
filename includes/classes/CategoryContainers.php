@@ -22,7 +22,6 @@ class CategoryContainers
         }
 
         return $html . "</div>";
-        
     }
 
     private function getCategoryHtml($sqlData, $title, $tvShows, $movies)
@@ -45,11 +44,19 @@ class CategoryContainers
 
         $entitiesHtml = "";
 
+        $previewProvider = new PreviewProvider($this->con, $this->username);
+
         foreach ($entities as $entity) {
-            $entitiesHtml .= $entity->getName();
-            
+            $entitiesHtml .= $previewProvider->createEntityPreviewSquare($entity);
         }
 
-        return $title . " &rarr; " . $entitiesHtml  . "<br>";
+        return "<div class='category'>
+                    <a href='category.php?id=$categoryId' class='text-decoration-none'>
+                        <h3>$title</h3>
+                    </a>
+                    <div class='entities'>
+                        $entitiesHtml
+                    </div>
+                </div>";
     }
 }

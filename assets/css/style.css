@@ -13,6 +13,10 @@ body.login {
     background-repeat: no-repeat;
 }
 
+a h3:hover{
+    color: cornflowerblue;
+}
+
 /* Form shaddow */
 .box {
     -webkit-box-shadow: 5px 5px 15px 3px rgba(0, 0, 0, 0.7);
@@ -34,8 +38,23 @@ img.logo {
 .preview-container {
     position: relative;
     display: flex;
-    
 }
+
+/* Size the thumbnails */
+.preview-container.small {
+    width: 230px;
+    height: 129px;
+    margin-right: 4px;
+    display: inline-flex;
+}
+/* make the thumbnail fit the preview-container.small */
+.preview-container.small img {
+    width: 100%;
+    height: 100%;
+    /* Object fit cover makes sure that the img is not stretched basically it will just push what dont fit outside of the display area */
+    object-fit: cover;
+}
+
 /* create overlay on top of preview-container */
 .preview-overlay {
     height: 100%;
@@ -81,4 +100,16 @@ img.logo {
 .buttons button:hover {
     background-color: #e6e6e6;
     color: #000;
+}
+
+.category {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.entities {
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
 }
