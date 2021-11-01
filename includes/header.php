@@ -13,8 +13,7 @@ $currentUser = $account->retrieveAccount($userLoggedIn);
 $username = $currentUser["username"];
 
 
-$preview = new PreviewProvider($con, $username);
-echo $preview->createPreviewVideo(null);
+
 ?>
 
 <!doctype html>

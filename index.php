@@ -1,6 +1,16 @@
-<?php require_once("includes/header.php"); ?>
+<?php 
+require_once("includes/header.php");
 
-<body class="">
+// Create the preview content
+$preview = new PreviewProvider($con, $username);
+echo $preview->createPreviewVideo(null);
+
+// create the category containers
+$categories = new CategoryContainers($con, $username);
+echo $categories->showAllCatergory()
+?>
+
+<body class="bg-light">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -8,6 +18,7 @@
                 <a href="register.php" class="text-decoration-none link-secondary">Register an Account</a>
                 <br>
                 <a href="login.php" class="text-decoration-none link-secondary">Log into your Account</a>
+                
             </div>
         </div>
     </div>
