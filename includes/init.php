@@ -2,7 +2,7 @@
 /**
  * Initializations
  * 
- * Register an autoloader to automatically load required classes and automatically start session
+ * Register an autoloader to automatically load required classes
  * 
  */
 

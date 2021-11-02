@@ -52,7 +52,7 @@ class PreviewProvider
         $thumbnail = $entity->getThumbnail();
         $name = $entity->getName();
 
-        return "<a href=''entity.php?id=$id'>
+        return "<a href='entity.php?id=$id'>
                     <div class='preview-container small'>
                         <img src='$thumbnail' title='$name' class=''>
                     </div>

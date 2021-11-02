@@ -19,7 +19,7 @@ class Entity
             $query->bindValue(":id", $input);
             // Execute query
             $query->execute();
-            // Assign data to inout as an associative array
+            // Assign data to input as an associative array
             $this->sqlData = $query->fetch(PDO::FETCH_ASSOC);
         }
     }
