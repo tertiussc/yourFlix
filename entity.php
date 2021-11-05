@@ -5,10 +5,7 @@ $preview = new PreviewProvider($con, $username);
 
 // Get the entity
 if (!isset($_GET["id"])) {
-    exit("<div class='container'>
-            <p class='callout-danger mt-3 ms-3'> No entity ID provides!</p>
-            <a href='index.php' class='btn btn-secondary ms-3'>Go to Home</a>
-        </div>");
+    ErrorMessage::show("No ID provided for Entity!");
 }
 
 $entityId = $_GET["id"];

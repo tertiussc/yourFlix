@@ -29,9 +29,14 @@ img.logo {
 }
 
 .callout-danger {
+    position: absolute;
+    top: 25%;
     border-left: solid tomato 4px;
     background-color: whitesmoke;
-    padding-left: 0.3em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border-radius: 0px 5px 5px 0px;
+    margin-left: .5em;
 }
 
 /* prepare the container for the preview overlay */
