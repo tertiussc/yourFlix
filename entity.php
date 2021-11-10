@@ -11,6 +11,9 @@ if (!isset($_GET["id"])) {
 $entityId = $_GET["id"];
 $entity = new Entity($con, $entityId);
 
+$seasonProvider = new SeasonProvider($con, $username);
+
+
 ?>
 
 <body class="bg-light">
@@ -23,6 +26,7 @@ $entity = new Entity($con, $entityId);
 
                     <a href="login.php" class="text-decoration-none link-secondary float-end">Log into your Account &rarr;</a>
                     <?php echo $preview->createPreviewVideo($entity); ?>
+                    <?php echo $seasonProvider->createSeasons($entity); ?>
                 </div>
 
             </div>
