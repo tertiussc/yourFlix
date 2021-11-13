@@ -27,9 +27,9 @@ $seasonProvider = new SeasonProvider($con, $username);
                     <a href="register.php" class="text-decoration-none link-secondary">&larr; Register an Account</a>
 
                     <a href="login.php" class="text-decoration-none link-secondary float-end">Log into your Account &rarr;</a>
-                    <?php echo $preview->createPreviewVideo($entity); ?>
-                    <?php echo $seasonProvider->createSeasons($entity); ?>
                 </div>
+                <?php echo $preview->createPreviewVideo($entity); ?>
+                <?php echo $seasonProvider->createSeasons($entity); ?>
 
             </div>
         </div>
