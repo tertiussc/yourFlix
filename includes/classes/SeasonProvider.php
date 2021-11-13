@@ -29,7 +29,7 @@ class SeasonProvider
 
             $seasonsHtml .= "<div class='season'>
                                 <h3>Season $seasonNumber</h3>
-                                </div class='videos'>
+                                <div class='videos'>
                                     $videosHtml
                                 </div>
                             </div>";

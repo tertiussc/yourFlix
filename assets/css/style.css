@@ -135,8 +135,46 @@ img.logo {
   background:dodgerblue; 
 }
 
-.entities {
+.entities,
+.videos {
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
+}
+
+.season{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 50px;
+}
+
+.episode-container {
+    display: inline-flex;
+    justify-content: center;
+    margin-right: 4px;
+    overflow: hidden;
+}
+.episode-container .contents {
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+}
+.episode-container img {
+    width: 230px;
+    height: 129px;
+    object-fit: cover;
+}
+.episode-container .video-info h4,
+.episode-container .video-info span {
+    width: 100%;
+    white-space: normal;
+}
+.episode-container .video-info {
+    max-height: 120px;
+    overflow-y: scroll;
+}
+/* Hide the vertical scrollbar while still enabling scroll */
+.episode-container .video-info::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
