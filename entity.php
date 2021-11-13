@@ -10,8 +10,8 @@ if (!isset($_GET["id"])) {
 
 $entityId = $_GET["id"];
 $entity = new Entity($con, $entityId);
-
 $seasonProvider = new SeasonProvider($con, $username);
+$categoryContainers = new CategoryContainers($con, $username);
 
 
 ?>
@@ -30,6 +30,7 @@ $seasonProvider = new SeasonProvider($con, $username);
                 </div>
                 <?php echo $preview->createPreviewVideo($entity); ?>
                 <?php echo $seasonProvider->createSeasons($entity); ?>
+                <?php echo $categoryContainers->showCategory($entity->getCategoryId(), "You might also like") ?>
 
             </div>
         </div>

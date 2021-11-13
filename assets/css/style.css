@@ -178,3 +178,7 @@ img.logo {
     width: 0px;
     background: transparent;
 }
+
+.preview-categories.no-scroll .entities {
+    white-space: normal;
+}
