@@ -21,7 +21,9 @@ $seasonProvider = new SeasonProvider($con, $username);
         <div class="row">
             <div class="col">
                 <div class="container">
-                    <h3 class="display-5">Welcome to yourFlix</h3>
+                    <a href="index.php" class="text-decoration-none">
+                        <h3 class="display-5">Welcome to yourFlix</h3>
+                    </a>
                     <a href="register.php" class="text-decoration-none link-secondary">&larr; Register an Account</a>
 
                     <a href="login.php" class="text-decoration-none link-secondary float-end">Log into your Account &rarr;</a>
