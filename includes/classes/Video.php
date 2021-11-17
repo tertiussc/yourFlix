@@ -14,7 +14,7 @@ class Video
         } else {
             // Get the data from the Databae
             // create Query
-            $query = $this->con->prepare("SELECT * FROM entities WHERE id=:id");
+            $query = $this->con->prepare("SELECT * FROM videos WHERE id=:id");
             // Bind value
             $query->bindValue(":id", $input);
             // Execute query
@@ -23,6 +23,12 @@ class Video
             $this->sqlData = $query->fetch(PDO::FETCH_ASSOC);
         }
         $this->entity = new Entity($con, $this->sqlData["entityId"]);
+    }
+
+    public function incrementViews(){
+        $query = $this->con->prepare("UPDATE videos SET views=views+1 WHERE id=:id");
+        $query->bindValue(":id", $this->getId());
+        $query->execute();
     }
 
     public function getId(){
