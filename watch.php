@@ -9,15 +9,14 @@ if (!isset($_GET["id"])) {
 $video = new Video($con, $_GET["id"]);
 $video->incrementViews();
 
-?>
 
-<div class="video-controls watch-nav py-5">
+?>
+<div class="video-controls watch-nav py-5" id="watch-nav">
     <button class="btn" onclick="goBack()">
         <i class="fas fa-arrow-left h1 text-light"></i> <span class="h1 text-light ms-2">
             <?php echo $video->getTitle(); ?>
         </span>
     </button>
-
 </div>
 <div class="watch-container ratio ratio-16x9">
     <video controls autoplay>
@@ -25,6 +24,7 @@ $video->incrementViews();
     </video>
 </div>
 
-
-<!-- Scripts -->
-<script src="assets/js/script.js"></script> <!-- Move to footer -->
+<?php require("includes/footer.php"); ?>
+<script>
+    initVideo();
+</script>

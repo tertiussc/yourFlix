@@ -35,3 +35,4 @@ $username = $currentUser["username"];
 
     <title>YourFlix</title>
 </head>
+<body>

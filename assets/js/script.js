@@ -16,3 +16,20 @@ function previewEnded() {
 function goBack() {
     window.history.back();
 }
+
+function startHideTimer() {
+    var timeout = null;
+
+    $(document).on("mousemove", function () {
+        clearTimeout(timeout);
+        $(".watch-nav").fadeIn();
+        
+        timeout = setTimeout(function () {
+            $(".watch-nav").fadeOut();
+        }, 2000);
+    })
+}
+
+function initVideo() {
+    startHideTimer();
+}
