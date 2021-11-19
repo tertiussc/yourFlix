@@ -23,13 +23,25 @@ function startHideTimer() {
     $(document).on("mousemove", function () {
         clearTimeout(timeout);
         $(".watch-nav").fadeIn();
-        
+
         timeout = setTimeout(function () {
             $(".watch-nav").fadeOut();
         }, 2000);
-    })
+    });
 }
 
-function initVideo() {
+function initVideo(videoId, username) {
     startHideTimer();
+    // call update function
+    updateProgressTimer(videoId, username);
+}
+
+function updateProgressTimer(videoId, username) {
+    addDuration(videoId, username);
+}
+
+function addDuration(videoId, username) {
+    $.post("assets/ajax/add_duration.php", { videoId: videoId, username: username}, function (data) {
+        alert(data)
+    });
 }

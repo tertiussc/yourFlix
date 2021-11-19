@@ -12,8 +12,6 @@ $account = new Account($con);
 $currentUser = $account->retrieveAccount($userLoggedIn);
 $username = $currentUser["username"];
 
-
-
 ?>
 
 <!doctype html>
@@ -35,4 +33,5 @@ $username = $currentUser["username"];
 
     <title>YourFlix</title>
 </head>
-<body>
+
+<body class="bg-light">

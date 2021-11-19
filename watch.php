@@ -19,12 +19,12 @@ $video->incrementViews();
     </button>
 </div>
 <div class="watch-container ratio ratio-16x9">
-    <video controls autoplay>
+    <video controls > <!-- add autoplay back -->
         <source src='<?= $video->getFilePath(); ?>' type="video/mp4">
     </video>
 </div>
 
 <?php require("includes/footer.php"); ?>
 <script>
-    initVideo();
+    initVideo("<?php echo $video->getId(); ?>", "<?php echo $username; ?>");
 </script>
