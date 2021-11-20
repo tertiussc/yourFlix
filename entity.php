@@ -22,11 +22,8 @@ $categoryContainers = new CategoryContainers($con, $username);
             <div class="col">
                 <div class="container">
                     <a href="index.php" class="text-decoration-none">
-                        <h3 class="display-5">Welcome to yourFlix</h3>
+                        <h3 class="display-5"><img src="assets/img/tempLogo2.png" class="logo"></h3>
                     </a>
-                    <a href="register.php" class="text-decoration-none link-secondary">&larr; Register an Account</a>
-
-                    <a href="login.php" class="text-decoration-none link-secondary float-end">Log into your Account &rarr;</a>
                 </div>
                 <?php echo $preview->createPreviewVideo($entity); ?>
                 <?php echo $seasonProvider->createSeasons($entity); ?>

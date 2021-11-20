@@ -16,6 +16,9 @@ body.login {
 a h3:hover{
     color: cornflowerblue;
 }
+a {
+    text-decoration: none;
+}
 
 /* Form shaddow */
 .box {
