@@ -42,6 +42,8 @@ function updateProgressTimer(videoId, username) {
 
 function addDuration(videoId, username) {
     $.post("assets/ajax/add_duration.php", { videoId: videoId, username: username}, function (data) {
-        alert(data)
+        if (data !== null && data !== "") {
+            alert(data);
+        }
     });
 }
