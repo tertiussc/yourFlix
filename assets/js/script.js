@@ -50,6 +50,7 @@ function updateProgressTimer(videoId, username) {
         })
         .on("ended", function () {
             window.clearInterval(timer);
+            setFinished(videoId, username);
         });
 }
 
@@ -63,6 +64,18 @@ function updateProgress(videoId, username, progress){
             }
         }
     );;
+}
+
+function setFinished(videoId, username) {
+    $.post(
+        "assets/ajax/set_finished.php",
+        { videoId: videoId, username: username },
+        function (data) {
+            if (data !== null && data !== "") {
+                alert(data);
+            }
+        }
+    );
 }
 
 function addDuration(videoId, username) {
