@@ -41,6 +41,7 @@ function startHideTimer() {
 // initiates the fade timer and update progress
 function initVideo(videoId, username) {
     startHideTimer();
+    setStartTime(videoId, username)
 
     updateProgressTimer(videoId, username);
 }
@@ -101,6 +102,25 @@ function setFinished(videoId, username) {
             if (data !== null && data !== "") {
                 alert(data);
             }
+        }
+    );
+}
+
+
+// Resume video where the user left off
+function setStartTime(videoId, username) {
+    $.post(
+        "assets/ajax/get_progress.php",
+        { videoId: videoId, username: username },
+        function (data) {
+            if (isNaN(data)) {
+                alert(data);
+                return;
+            }
+            $("video").on("canplay", function(){
+                this.currentTime = data;
+                $("video").off("canplay");
+            })
         }
     );
 }
