@@ -38,12 +38,41 @@ function initVideo(videoId, username) {
 
 function updateProgressTimer(videoId, username) {
     addDuration(videoId, username);
+
+    var timer;
+
+    $("video")
+        .on("playing", function (event) {
+            window.clearInterval(timer);
+            timer = window.setInterval(function () {
+                updateProgress(videoId, username, event.target.currentTime);
+            }, 3000);
+        })
+        .on("ended", function () {
+            window.clearInterval(timer);
+        });
+}
+
+function updateProgress(videoId, username, progress){
+    $.post(
+        "assets/ajax/update_duration.php",
+        { videoId: videoId, username: username, progress: progress },
+        function (data) {
+            if (data !== null && data !== "") {
+                alert(data);
+            }
+        }
+    );;
 }
 
 function addDuration(videoId, username) {
-    $.post("assets/ajax/add_duration.php", { videoId: videoId, username: username}, function (data) {
-        if (data !== null && data !== "") {
-            alert(data);
+    $.post(
+        "assets/ajax/add_duration.php",
+        { videoId: videoId, username: username },
+        function (data) {
+            if (data !== null && data !== "") {
+                alert(data);
+            }
         }
-    });
+    );
 }
