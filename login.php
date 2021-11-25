@@ -62,7 +62,7 @@ if (isset($_POST["submit"])) {
                     </a>
                     <h4 class="text-dark mb-0">Sign In</h4>
                     <p class="text-secondary">to continue to YourFlix</p>
-
+                    
                     <!-- Email -->
                     <?php echo $account->getError(Constants::$loginFailed); ?>
                     <div class="mb-3">

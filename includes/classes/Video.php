@@ -49,5 +49,27 @@ class Video
     public function getEpisodeNumber(){
         return $this->sqlData["episode"];
     }
+    public function getSeasonNumber(){
+        return $this->sqlData["season"];
+    }
+    public function getEntityId(){
+        return $this->sqlData["entityId"];
+    }
+
+
+    public function getSeasonAndEpisode(){
+        if($this->isMovie()) {
+            return;
+        }
+
+        $season = $this->getSeasonNumber();
+        $episode = $this->getEpisodeNumber();
+
+        return "Season $season, Episode $episode";
+
+    }
+    public function isMovie() {
+        return $this->sqlData["isMovie"] == 1;
+    }
 
 }
