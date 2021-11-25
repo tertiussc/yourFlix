@@ -1,6 +1,8 @@
 <?php
-class VideoProvider {
-    public static function getUpNext($con, $currentVideo){
+class VideoProvider
+{
+    public static function getUpNext($con, $currentVideo)
+    {
         $query = $con->prepare("Select * from videos
                                 WHERE entityId = :entityId AND id != :id
                                 AND (
@@ -13,7 +15,7 @@ class VideoProvider {
 
         $query->execute();
 
-        if($query->rowCount() == 0) {
+        if ($query->rowCount() == 0) {
             $query = $con->prepare("SELECT * FROM videos
                                     WHERE season <= 1 AND episode <= 1 
                                     AND id != :videoId
@@ -23,5 +25,30 @@ class VideoProvider {
         }
         $row = $query->fetch(PDO::FETCH_ASSOC);
         return new Video($con, $row);
+    }
+
+    public static function  getEntityVideoForUser($con, $entityId, $username)
+    {
+        $query = $con->prepare("SELECT videoId from videoprogress 
+                                INNER JOIN videos 
+                                ON videoprogress.videoId = videos.id
+                                WHERE videos.entityId = :entityId
+                                AND videoprogress.username = :username 
+                                ORDER BY videoprogress.dateModified DESC
+                                LIMIT 1");
+        $query->bindValue(":entityId", $entityId);
+        $query->bindValue(":username", $$username);
+
+        $query->execute();
+
+        if ($query->rowCount() == 0) {
+            $query = $con->prepare("SELECT id FROM videos 
+                                    WHERE entityId=:entityId
+                                    ORDER BY season, episode ASC
+                                    LIMIT 1");
+            $query->bindValue(":entityId", $entityId);
+            $query->execute();
+        }
+        return $query->fetchColumn();
     }
 }

@@ -4,7 +4,6 @@ class Video
 {
     private $con, $sqlData, $entity;
 
-
     public function __construct($con, $input)
     {
         $this->con = $con;

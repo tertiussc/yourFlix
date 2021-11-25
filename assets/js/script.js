@@ -1,5 +1,5 @@
 /**
- * custom javascript functions
+ * Custom javascript functions
  */
 
 // switches mute on and off
