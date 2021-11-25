@@ -22,15 +22,15 @@ $upNextVideo = VideoProvider::getUpNext($con, $video)
 </div>
 
 <!-- Up next overlay -->
-<div class="video-controls up-next">
-    <button class="btn">
+<div class="video-controls up-next" style="display: none;">
+    <button class="btn" onclick="restartVideo();">
         <i class="fas fa-redo h1 text-light"></i>
     </button>
     <div class="up-next-container">
         <h2 class="text-light">Up Next: </h2>
         <h3 class="text-light"><?php echo $upNextVideo->getTitle() ?></h3>
         <h3 class="text-light"><?php echo $video->getSeasonAndEpisode(); ?></h3>
-        <button class="btn play-next">
+        <button class="btn play-next" onclick="watchVideo(<?php echo $upNextVideo->getId(); ?>);">
             <i class="fas fa-play text-light h2"></i><span class="text-light h2 ms-4">Play</span>
         </button>
     </div>
@@ -38,7 +38,8 @@ $upNextVideo = VideoProvider::getUpNext($con, $video)
 
 <!-- Video Player -->
 <div class="watch-container ratio ratio-16x9">
-    <video controls > <!-- add autoplay back -->
+    <video controls autoplay onended="showUpNext();">
+        <!-- add autoplay back -->
         <source src='<?= $video->getFilePath(); ?>' type="video/mp4">
     </video>
 </div>
