@@ -10,7 +10,8 @@ class SeasonProvider
         $this->username = $username;
     }
 
-    public function createSeasons($entity) {
+    public function createSeasons($entity)
+    {
         $seasons = $entity->getSeasons();
 
         if (sizeof($seasons) == 0) {
@@ -37,12 +38,14 @@ class SeasonProvider
         return $seasonsHtml;
     }
 
-    private function createVideoSquare($videos) {
-        $id = $videos->getId();
-        $thumbnail = $videos->getThumbnail();
-        $name = $videos->getTitle(); //getTitle
-        $description = $videos->getDescription();
-        $episodeNumber = $videos->getEpisodeNumber();
+    private function createVideoSquare($video)
+    {
+        $id = $video->getId();
+        $thumbnail = $video->getThumbnail();
+        $name = $video->getTitle(); //getTitle
+        $description = $video->getDescription();
+        $episodeNumber = $video->getEpisodeNumber();
+        $hasSeen = $video->hasSeen($this->username) ? "<i class='fas fa-check-square seen'></i>" : "";
 
         return "<a href='watch.php?id=$id' class=''>
                     <div class='episode-container'>
@@ -51,8 +54,9 @@ class SeasonProvider
                             <div class='video-info'>
                                 <h4>$episodeNumber. $name</h4>
                                 <span>$description</span>
-                            </div>
-                        </div>
+                                </div>
+                                $hasSeen
+                                </div>
                     </div>
                 </a>";
     }
