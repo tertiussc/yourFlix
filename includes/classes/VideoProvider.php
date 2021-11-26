@@ -37,7 +37,7 @@ class VideoProvider
                                 ORDER BY videoprogress.dateModified DESC
                                 LIMIT 1");
         $query->bindValue(":entityId", $entityId);
-        $query->bindValue(":username", $$username);
+        $query->bindValue(":username", $username);
 
         $query->execute();
 
