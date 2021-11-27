@@ -37,6 +37,19 @@ function startHideTimer() {
         }, 2000);
     });
 }
+// Fade navbar in OR out
+function startHideNav() {
+    var timeout = null;
+
+    $(document).on("mousemove", function () {
+        clearTimeout(timeout);
+        $("#nav-bar").fadeIn();
+
+        timeout = setTimeout(function () {
+            $("#nav-bar").fadeOut();
+        }, 2000);
+    });
+}
 
 // initiates the fade timer and update progress
 function initVideo(videoId, username) {
