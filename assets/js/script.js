@@ -54,12 +54,12 @@ function startHideNav() {
 // initiates the fade timer and update progress
 function initVideo(videoId, username) {
     startHideTimer();
-    setStartTime(videoId, username)
+    setStartTime(videoId, username);
 
     updateProgressTimer(videoId, username);
 }
 
-// calls the update timers and finished watching indicator 
+// calls the update timers and finished watching indicator
 function updateProgressTimer(videoId, username) {
     addDuration(videoId, username);
 
@@ -94,7 +94,7 @@ function addDuration(videoId, username) {
 }
 
 // tracks the video playing progress
-function updateProgress(videoId, username, progress){
+function updateProgress(videoId, username, progress) {
     $.post(
         "assets/ajax/update_duration.php",
         { videoId: videoId, username: username, progress: progress },
@@ -103,7 +103,7 @@ function updateProgress(videoId, username, progress){
                 alert(data);
             }
         }
-    );;
+    );
 }
 
 // tracks if a video has been watched finished
@@ -119,7 +119,6 @@ function setFinished(videoId, username) {
     );
 }
 
-
 // Resume video where the user left off
 function setStartTime(videoId, username) {
     $.post(
@@ -130,26 +129,53 @@ function setStartTime(videoId, username) {
                 alert(data);
                 return;
             }
-            $("video").on("canplay", function(){
+            $("video").on("canplay", function () {
                 this.currentTime = data;
                 $("video").off("canplay");
-            })
+            });
         }
     );
 }
 
-function restartVideo(){
+function restartVideo() {
     $("video")[0].currentTime = 0;
     $("video")[0].play();
 
     $(".up-next").fadeOut();
 }
 
-
 function watchVideo(videoId) {
-    window.location.href = "watch.php?id="+videoId;
+    window.location.href = "watch.php?id=" + videoId;
 }
 
-function showUpNext(){
+function showUpNext() {
     $(".up-next").fadeIn();
+}
+
+function goSearch() {
+    var username = "<?= $username; ?>";
+    var timer;
+
+    $(".search-input").keyup(function () {
+        clearTimeout(timer);
+
+        timer = setTimeout(function () {
+            var val = $(".search-input").val();
+            // make ajax call
+            if (val != "") {
+                $.post(
+                    "assets/ajax/get_search_results.php",
+                    {
+                        term: val,
+                        username: username,
+                    },
+                    function (data) {
+                        $(".results").html(data);
+                    }
+                );
+            } else {
+                $(".results").html("");
+            }
+        }, 500);
+    });
 }

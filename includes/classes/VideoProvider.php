@@ -3,7 +3,7 @@ class VideoProvider
 {
     public static function getUpNext($con, $currentVideo)
     {
-        $query = $con->prepare("Select * from videos
+        $query = $con->prepare("SELECT * FROM videos
                                 WHERE entityId = :entityId AND id != :id
                                 AND (
                                     (season = :season AND episode > :episode) OR season > :season
@@ -18,7 +18,7 @@ class VideoProvider
         if ($query->rowCount() == 0) {
             $query = $con->prepare("SELECT * FROM videos
                                     WHERE season <= 1 AND episode <= 1 
-                                    AND id != :videoId
+                                    AND id != :id
                                     ORDER BY views DESC LIMIT 1");
             $query->bindValue(":id", $currentVideo->getId());
             $query->execute();

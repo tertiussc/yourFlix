@@ -14,7 +14,7 @@ $upNextVideo = VideoProvider::getUpNext($con, $video)
 ?>
 <!-- Go back overlay -->
 <div class="video-controls watch-nav py-5" id="watch-nav">
-    <button class="btn " onclick="goBack()">
+    <button class="btn" onclick="goBack()">
         <i class="fas fa-arrow-left h1 text-light"></i> <span class="h1 text-light ms-2"> Watching: 
             <?php echo $video->getTitle(); ?>
         </span>
