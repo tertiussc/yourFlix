@@ -40,6 +40,14 @@ img.logo {
     border-radius: 0px 5px 5px 0px;
     margin-left: .5em;
 }
+.callout-success {
+    border-left: solid lime 4px;
+    background-color: whitesmoke;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    border-radius: 0px 5px 5px 0px;
+    margin-left: .5em;
+}
 
 .callout-danger-alert {
     position: absolute;

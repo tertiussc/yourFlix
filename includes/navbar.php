@@ -19,8 +19,9 @@
                     </li>
                 </ul>
                 <div class="right-items ms-auto">
-                    <a href="search.php"><i class="fas fa-search"></i></a>
-                    <a href="profile.php" class="ms-2"><i class="fas fa-user"></i></a>
+                    <a href="search.php" ><i class="fas fa-search"></i></a>
+                    <a href="profile.php" class="ms-2" ><i class="fas fa-user"></i></a>
+                    <a href="logout.php" class="ms-2" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Log out"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
             </div>
         </div>
