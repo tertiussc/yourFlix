@@ -1,5 +1,6 @@
 <?php
-class User {
+class User
+{
     private $con, $sqlData;
 
     public function __construct($con, $username)
@@ -14,20 +15,27 @@ class User {
         $this->sqlData = $query->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getFirstName(){
+    public function getFirstName()
+    {
         return $this->sqlData["firstName"];
     }
 
-    public function getLastName(){
+    public function getLastName()
+    {
         return $this->sqlData["lastName"];
     }
 
-    public function getUsername(){
+    public function getUsername()
+    {
         return $this->sqlData["username"];
     }
-    public function getEmail(){
+    public function getEmail()
+    {
         return $this->sqlData["email"];
     }
-}
 
-?>
+    public function getIsSubscribed()
+    {
+        return $this->sqlData["isSubscribed"];
+    }
+}
