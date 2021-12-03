@@ -134,6 +134,7 @@ if ($user->getIsSubscribed() == 1) {
                 <div class="form-check form-switch mb-3">
                     <input class="form-check-input" type="checkbox" role="switch" id="isSubscribed" <?php echo ($isSubscribed == 1) ? "checked" : ""; ?>>
                     <label class="form-check-label text-light" for="isSubscribed"><?= $subscriptionDescription ?></label>
+                    <a href="billing.php">Update Billing</a>
                 </div>
                 <div class="mb-3">
                     <input class="form-control btn btn-primary" type="submit" name="updateSubscription" value="<?= $subscriptionButtonText ?>">
