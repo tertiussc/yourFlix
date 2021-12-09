@@ -38,9 +38,14 @@ class User
     {
         return $this->sqlData["isSubscribed"];
     }
-
+    
     /**
      * Update the user's subscription
+     * 
+     * @param $con Connection to the database
+     * @param $subscriptionStatus User's current subscription status
+     * 
+     * @return true if successful and false otherwise
      */
     public function updateSubscription($username, $subscriptionStatus) {
         $isSubscribed = ($subscriptionStatus == 'Subscribe') ? 1 : 0;
