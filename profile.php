@@ -8,6 +8,10 @@ $lastName = isset($_POST["lastName"]) ? $_POST["lastName"] : $user->getLastName(
 $email = isset($_POST["email"]) ? $_POST["email"] : $user->getEmail();
 $detailsMessage = '';
 $passwordMessage = '';
+$isSubscribed = $user->getIsSubscribed();
+$subscriptionDescription = ($isSubscribed == 1) ? 'You are subscribed' : 'Please subscribe';
+$subscriptionButtonText = ($isSubscribed == 1) ? 'Unsubscribe' : 'Subscribe';
+$subscriptionUpdatedStatus = '';
 
 // manage form submission
 if (isset($_POST["saveDetailsButton"])) {
@@ -48,16 +52,24 @@ if (isset($_POST["savePasswordButton"])) {
     }
 }
 
-// Check to see if the user is subscribed
-if ($user->getIsSubscribed() == 1) {
-    $isSubscribed = 1;
-    $subscriptionDescription = "You are subscribed";
-    $subscriptionButtonText = "Unsubscribe";
-} else {
-    $isSubscribed = 0;
-    $subscriptionDescription = "Please enable subscribe";
-    $subscriptionButtonText = "Subscribe";
+if (isset($_POST["updateSubscription"])) {
+    $user = new User($con, $username);
+
+    if ($user->updateSubscription($username, $_POST["updateSubscription"])) {
+        $subscriptionUpdatedStatus = "<div class='callout-success'>
+                                        Subscription updated successfully!
+                                    </div>";
+        header("Refresh: 2");
+    } else {
+        $subscriptionUpdatedStatus = "<div class='callout-danger'>
+                                        Subscription was not updated!
+                                    </div>";
+        header("Refresh: 2");
+    }
+    // update users's account status
 }
+
+
 
 ?>
 <?php require_once("includes/navbar.php"); ?>
@@ -130,11 +142,14 @@ if ($user->getIsSubscribed() == 1) {
     <div class="row">
         <div class="col-8">
             <form method="POST" class="bg-dark p-3 rounded">
-                <h2 class="text-light">Subscription</h2>
+                <h2 class=" text-light">Subscription</h2>
                 <div class="form-check form-switch mb-3">
-                    <input class="form-check-input" type="checkbox" role="switch" id="isSubscribed" <?php echo ($isSubscribed == 1) ? "checked" : ""; ?>>
+                    <input class="form-check-input" type="checkbox" role="switch" id="isSubscribed" <?php echo ($isSubscribed == 1) ? "checked" : ""; ?> disabled>
                     <label class="form-check-label text-light" for="isSubscribed"><?= $subscriptionDescription ?></label>
-                    <a href="billing.php">Update Billing</a>
+                    <!-- <a href="billing.php">Update Billing</a> -->
+                </div>
+                <div class="message mb-3">
+                    <?php echo $subscriptionUpdatedStatus; ?>
                 </div>
                 <div class="mb-3">
                     <input class="form-control btn btn-primary" type="submit" name="updateSubscription" value="<?= $subscriptionButtonText ?>">
@@ -144,3 +159,6 @@ if ($user->getIsSubscribed() == 1) {
     </div>
 </div>
 <?php require_once("includes/footer.php"); ?>
+<script>
+
+</script>

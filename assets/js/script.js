@@ -180,6 +180,7 @@ function goSearch() {
     });
 }
 
+
 // Enable bootstrap tooltips
 var tooltipTriggerList = [].slice.call(
     document.querySelectorAll('[data-bs-toggle="tooltip"]')
