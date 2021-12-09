@@ -9,13 +9,20 @@ if (!isset($_GET["id"])) {
 $video = new Video($con, $_GET["id"]);
 $video->incrementViews();
 
+// prevent users from watching if not subscribed
+$user = new User($con, $username);
+if (!$user->getIsSubscribed()) {
+    ErrorMessage::show("You are not subscribed, please subscribe to watch videos
+                        <a href='profile.php' class='text-decoration-none text-reset fw-bold'>Click here to subscribe</a>");
+}
+
 $upNextVideo = VideoProvider::getUpNext($con, $video)
 
 ?>
 <!-- Go back overlay -->
 <div class="video-controls watch-nav py-5" id="watch-nav">
     <button class="btn" onclick="goBack()">
-        <i class="fas fa-arrow-left h1 text-light"></i> <span class="h1 text-light ms-2"> Watching: 
+        <i class="fas fa-arrow-left h1 text-light"></i> <span class="h1 text-light ms-2"> Watching:
             <?php echo $video->getTitle(); ?>
         </span>
     </button>
